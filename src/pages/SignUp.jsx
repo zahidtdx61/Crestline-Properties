@@ -10,10 +10,10 @@ const SignUp = () => {
       <Helmet>
         <title>Crestline | Sign Up</title>
       </Helmet>
-      <div className="w-full flex max-h-[calc(h-100vh - 80px)]">
+      <div className="w-full flex">
         <RegistrationPromo />
 
-        <div className="flex-1 flex items-center justify-center h-screen">
+        <div className="flex-1 flex items-center justify-center h-full">
           <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
             <div className="">
               <div className="mt-5 space-y-2">
