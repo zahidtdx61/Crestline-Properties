@@ -54,7 +54,7 @@ const Navbar = () => {
 
       {/* mobile and tab */}
       <div
-        className={`lg:flex gap-1 w-fit min-w-40 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
+        className={`z-[10] lg:flex gap-1 w-fit min-w-40 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
           open ? "top-16 right-4" : "-top-96 right-4"
         } lg:hidden rounded-md h-fit flex flex-col justify-start items-start`}
       >

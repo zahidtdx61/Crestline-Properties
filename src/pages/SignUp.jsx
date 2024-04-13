@@ -1,9 +1,81 @@
-import { useState } from "react";
+import { Divider } from "@mui/material";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../components/AuthProvider/AuthProvider";
 
 const SignUp = () => {
+  const { register, handleSubmit } = useForm();
+  const data = useContext(AuthContext);
+
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [photoUrlError, setPhotoUrlError] = useState(false);
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const isValidEmail = (email) => emailRegex.test(email);
+  const containsUppercase = (str) => {
+    return /[A-Z]/.test(str);
+  };
+  const containsLowercase = (str) => {
+    return /[a-z]/.test(str);
+  };
+  const containsNumber = (str) => {
+    return /\d/.test(str);
+  };
+
+  const handleSignUp = (data) => {
+    const { name, email, photoUrl, password } = data;
+
+    setEmailError(false);
+    setPasswordError(false);
+
+    // name validation
+    if (name.length === 0) {
+      setNameError("This field is required");
+      return;
+    }
+
+    // photo url validation
+    if (photoUrl.length === 0) {
+      setPhotoUrlError("This field is required");
+      return;
+    }
+
+    // validate email
+    if (email.length === 0) {
+      setEmailError("This field is required");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setEmailError("Invalid email address domain");
+      return;
+    }
+
+    // validate password
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      return;
+    }
+    if (!containsUppercase(password)) {
+      setPasswordError("Password must contain at least one uppercase letter");
+      return;
+    }
+    if (!containsLowercase(password)) {
+      setPasswordError("Password must contain at least one lowercase letter");
+      return;
+    }
+    if (!containsNumber(password)) {
+      setPasswordError("Password must contain at least one number");
+      return;
+    }
+
+    console.log(data);
+  };
 
   return (
     <>
@@ -11,11 +83,11 @@ const SignUp = () => {
         <title>Crestline | Sign Up</title>
       </Helmet>
 
-      <div className="w-full flex">
+      <div className="w-full flex mb-4">
         <div className="flex-1 flex items-center justify-center h-full">
-          <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
+          <div className="w-full max-w-md px-4 bg-white text-gray-600 sm:px-0">
             <div className="">
-              <div className="mt-5 space-y-2">
+              <div className="mt-5 space-y-1">
                 <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
                   Sign up
                 </h3>
@@ -30,8 +102,8 @@ const SignUp = () => {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-x-3">
-              <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+            <div className="grid grid-cols-3 gap-x-3 my-4">
+              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -63,7 +135,7 @@ const SignUp = () => {
                   </defs>
                 </svg>
               </button>
-              <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -76,7 +148,7 @@ const SignUp = () => {
                   />
                 </svg>
               </button>
-              <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -127,30 +199,51 @@ const SignUp = () => {
                 </svg>
               </button>
             </div>
-            <div className="relative">
-              <span className="block w-full h-px bg-gray-300"></span>
-              <p className="inline-block w-fit text-sm bg-white px-2 absolute -top-2 inset-x-0 mx-auto">
-                Or continue with
-              </p>
-            </div>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+
+            <Divider className="text-sm ">Or continue with</Divider>
+
+            {/* sign up form */}
+            <form onSubmit={handleSubmit(handleSignUp)} className="space-y-5">
               <div>
                 <label className="font-medium">Name</label>
                 <input
                   type="text"
+                  {...register("name")}
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
                   placeholder="Enter Your Name"
                 />
+                {nameError && (
+                  <p className="text-xs text-red-700 my-0">{nameError}</p>
+                )}
               </div>
 
               <div>
                 <label className="font-medium">Email</label>
                 <input
-                  type="text"
+                  {...register("email")}
+                  required
+                  type="email"
                   placeholder="Enter your email"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
                 />
+                {emailError && (
+                  <p className="text-xs text-red-700 my-0">{emailError}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="font-medium">Photo URL</label>
+                <input
+                  type="text"
+                  required
+                  {...register("photoUrl")}
+                  placeholder="Enter your photo url"
+                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
+                />
+                {photoUrlError && (
+                  <p className="text-xs text-red-700 my-0">{photoUrlError}</p>
+                )}
               </div>
 
               <div>
@@ -200,10 +293,14 @@ const SignUp = () => {
                   <input
                     name="password"
                     required
+                    {...register("password")}
                     type={isPasswordHidden ? "password" : "text"}
                     placeholder="Enter your password"
                     className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
                   />
+                  {passwordError && (
+                    <p className="text-xs text-red-700 my-0">{passwordError}</p>
+                  )}
                 </div>
               </div>
 
