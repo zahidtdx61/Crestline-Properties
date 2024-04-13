@@ -4,9 +4,9 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>Crestline | Home</title>
       </Helmet>
-      <div>Home</div>
+      <div className="bg-green-500">Home</div>
     </>
   );
 };
