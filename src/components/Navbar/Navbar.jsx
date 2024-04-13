@@ -5,6 +5,13 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const routes = [
+    { name: "Home", path: "/", type: "public" },
+    { name: "User Profile", path: "/user-profile", type: "private" },
+    { name: "Update Profile", path: "/update-profile", type: "private" },
+    { name: "About", path: "/about", type: "public" },
+    { name: "Contact", path: "/contact", type: "public" },
+  ];
 
   const navStyle = (isActive) => {
     return [
@@ -24,29 +31,16 @@ const Navbar = () => {
       </div>
 
       <div className={`gap-8 font-bold lg:flex hidden lg:static`}>
-        <ul>
-          <NavLink to={"/"} className={({ isActive }) => navStyle(isActive)}>
-            Home
-          </NavLink>
-        </ul>
-
-        <ul>
-          <NavLink
-            to={"/about"}
-            className={({ isActive }) => navStyle(isActive)}
-          >
-            About
-          </NavLink>
-        </ul>
-
-        <ul>
-          <NavLink
-            to={"/contact"}
-            className={({ isActive }) => navStyle(isActive)}
-          >
-            Contact
-          </NavLink>
-        </ul>
+        {routes.map((route, index) => (
+          <ul key={index}>
+            <NavLink
+              to={route.path}
+              className={({ isActive }) => navStyle(isActive)}
+            >
+              {route.name}
+            </NavLink>
+          </ul>
+        ))}
       </div>
 
       <div className={`lg:flex gap-4 hidden lg:static`}>
@@ -60,45 +54,32 @@ const Navbar = () => {
 
       {/* mobile and tab */}
       <div
-        className={`lg:flex gap-8 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
-          open ? "top-16 right-4" : "-top-80 right-4"
-        } lg:hidden`}
+        className={`lg:flex gap-8 w-1/3 min-w-40 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
+          open ? "top-16 right-4" : "-top-96 right-4"
+        } lg:hidden rounded-md`}
       >
-        <ul>
-          <NavLink to={"/"} className={({ isActive }) => navStyle(isActive)}>
-            Home
-          </NavLink>
-        </ul>
+        {routes.map((route, index) => (
+          <ul key={index} className="mb-1">
+            <NavLink
+              to={route.path}
+              className={({ isActive }) => navStyle(isActive)}
+            >
+              {route.name}
+            </NavLink>
+          </ul>
+        ))}
 
-        <ul>
-          <NavLink
-            to={"/about"}
-            className={({ isActive }) => navStyle(isActive)}
-          >
-            About
-          </NavLink>
-        </ul>
-
-        <ul>
-          <NavLink
-            to={"/contact"}
-            className={({ isActive }) => navStyle(isActive)}
-          >
-            Contact
-          </NavLink>
-        </ul>
-
-        <ul className="px-2 py-1 text-center mt-6 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+        <ul className="px-2 py-1 w-full text-center mt-6 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
           <NavLink to={"/sign-in"}>Sign In</NavLink>
         </ul>
-        <ul className="px-2 py-1 text-center mt-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+        <ul className="px-2 py-1 w-full text-center mt-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
           <NavLink to={"/sign-up"}>Sign Up</NavLink>
         </ul>
       </div>
 
       <div
         onClick={() => setOpen((val) => !val)}
-        className="text-3xl md:hidden p-1"
+        className="text-3xl lg:hidden p-1"
       >
         {open ? <AiOutlineClose /> : <LuMenu />}
       </div>
