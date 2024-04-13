@@ -17,20 +17,20 @@ const Navbar = () => {
     return [
       isActive ? "text-blue-600" : "text-slate-700",
       isActive
-        ? "border-b border-blue-600 px-2 font-semibold"
-        : "font-medium px-2",
+        ? "border-b-2 border-blue-600 pr-2 lg:pr-0 lg:px-2 font-semibold"
+        : "font-medium pr-2 lg:pr-0 lg:px-2",
     ].join(" ");
   };
 
   return (
-    <div className="w-full p-2 lg:py-4 lg:px-16 flex items-center justify-between shadow-lg fixed bg-white">
+    <div className="w-full p-2 lg:py-4 lg:px-8 flex items-center justify-between shadow-lg fixed bg-white">
       <div>
         <h1 className="text-2xl font-bold">
           <NavLink to={"/"}>Crestline Properties</NavLink>
         </h1>
       </div>
 
-      <div className={`gap-8 font-bold lg:flex hidden lg:static`}>
+      <div className={`gap-4 flex-1 font-bold lg:flex hidden lg:static justify-center`}>
         {routes.map((route, index) => (
           <ul key={index}>
             <NavLink
@@ -43,7 +43,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className={`lg:flex gap-4 hidden lg:static`}>
+      <div className={`lg:flex gap-2 hidden lg:static`}>
         <div className="px-5 py-2 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
           <NavLink to={"/sign-in"}>Sign In</NavLink>
         </div>
@@ -54,12 +54,12 @@ const Navbar = () => {
 
       {/* mobile and tab */}
       <div
-        className={`lg:flex gap-8 w-1/3 min-w-40 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
+        className={`lg:flex gap-1 w-fit min-w-40 font-bold absolute duration-1000 bg-white px-8 py-4 shadow ${
           open ? "top-16 right-4" : "-top-96 right-4"
-        } lg:hidden rounded-md`}
+        } lg:hidden rounded-md h-fit flex flex-col justify-start items-start`}
       >
         {routes.map((route, index) => (
-          <ul key={index} className="mb-1">
+          <ul key={index} className="pl">
             <NavLink
               to={route.path}
               className={({ isActive }) => navStyle(isActive)}
@@ -69,10 +69,10 @@ const Navbar = () => {
           </ul>
         ))}
 
-        <ul className="px-2 py-1 w-full text-center mt-6 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+        <ul className="px-2 py-1 w-full mt-4 text-center  bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
           <NavLink to={"/sign-in"}>Sign In</NavLink>
         </ul>
-        <ul className="px-2 py-1 w-full text-center mt-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+        <ul className="px-2 py-1 w-full text-center bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
           <NavLink to={"/sign-up"}>Sign Up</NavLink>
         </ul>
       </div>
