@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -9,7 +10,7 @@ const SignUp = () => {
       <Helmet>
         <title>Crestline | Sign Up</title>
       </Helmet>
-      
+
       <div className="w-full flex">
         <div className="flex-1 flex items-center justify-center h-full">
           <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
@@ -20,12 +21,12 @@ const SignUp = () => {
                 </h3>
                 <p className="">
                   Already have an account?{" "}
-                  <a
-                    href="javascript:void(0)"
+                  <Link
+                    to={"/sign-in"}
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Log in
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
