@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../components/AuthProvider/AuthProvider";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -26,10 +26,7 @@ const SignIn = () => {
     return /[@$&#]/.test(str);
   };
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleSignIn = (data) => {
     const { email, password } = data;
@@ -65,7 +62,9 @@ const SignIn = () => {
       return;
     }
     if (!containsSpecialChar(password)) {
-      setPasswordError("Password must contain at least one special character (@, $, #, &)");
+      setPasswordError(
+        "Password must contain at least one special character (@, $, #, &)"
+      );
       return;
     }
 

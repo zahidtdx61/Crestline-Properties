@@ -1,10 +1,24 @@
+import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { LuMenu } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      console.log("Sign out successful");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const routes = [
     { name: "Home", path: "/", type: "public" },
     { name: "User Profile", path: "/user-profile", type: "private" },
@@ -17,8 +31,8 @@ const Navbar = () => {
     return [
       isActive ? "text-blue-600" : "text-slate-700",
       isActive
-        ? "border-b-2 border-blue-600 pr-2 lg:pr-0 lg:px-2 font-semibold"
-        : "font-medium pr-2 lg:pr-0 lg:px-2",
+        ? "border-b-2 border-blue-600 pr-2  lg:px-2 font-semibold"
+        : "font-medium pr-2 lg:px-2",
     ].join(" ");
   };
 
@@ -30,7 +44,9 @@ const Navbar = () => {
         </h1>
       </div>
 
-      <div className={`gap-4 flex-1 font-bold lg:flex hidden lg:static justify-center`}>
+      <div
+        className={`gap-4 flex-1 font-bold lg:flex hidden lg:static justify-center`}
+      >
         {routes.map((route, index) => (
           <ul key={index}>
             <NavLink
@@ -43,14 +59,26 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className={`lg:flex gap-2 hidden lg:static`}>
-        <div className="px-5 py-2 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
-          <NavLink to={"/sign-in"}>Sign In</NavLink>
+      {user ? (
+        <>
+          <Avatar>H</Avatar>
+          <div
+            onClick={handleSignOut}
+            className="px-5 py-2 bg-red-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105"
+          >
+            <NavLink to={"/sign-out"}>Sign Out</NavLink>
+          </div>
+        </>
+      ) : (
+        <div className={`lg:flex gap-2 hidden lg:static`}>
+          <div className="px-5 py-2 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+            <NavLink to={"/sign-in"}>Sign In</NavLink>
+          </div>
+          <div className="px-5 py-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+            Sign Up
+          </div>
         </div>
-        <div className="px-5 py-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
-          <NavLink to={"/sign-up"}>Sign Up</NavLink>
-        </div>
-      </div>
+      )}
 
       {/* mobile and tab */}
       <div

@@ -1,13 +1,13 @@
 import { Divider } from "@mui/material";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../components/AuthProvider/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const { signUpEmail } = useContext(AuthContext);
+  const { signUpEmail } = useAuth();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 

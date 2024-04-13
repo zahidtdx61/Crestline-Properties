@@ -8,7 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider } from "react-router-dom";
 import "./index.css";
 
-import AuthProvider from "./components/AuthProvider/AuthProvider.jsx";
+import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import router from "./routes/Router.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
