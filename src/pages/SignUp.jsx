@@ -7,7 +7,7 @@ import { AuthContext } from "../components/AuthProvider/AuthProvider";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const data = useContext(AuthContext);
+  const { signUpEmail } = useContext(AuthContext);
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
@@ -28,7 +28,7 @@ const SignUp = () => {
     return /\d/.test(str);
   };
 
-  const handleSignUp = (data) => {
+  const handleSignUp = async (data) => {
     const { name, email, photoUrl, password } = data;
 
     setEmailError(false);
@@ -75,6 +75,14 @@ const SignUp = () => {
     }
 
     console.log(data);
+
+    try {
+      const result = await signUpEmail(email, password);
+      const { user } = result;
+      console.log(user);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
