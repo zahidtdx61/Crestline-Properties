@@ -31,7 +31,7 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
-  const handleLogin = (data) => {
+  const handleSignIn = (data) => {
     const { email, password } = data;
 
     setEmailError(false);
@@ -89,7 +89,7 @@ const SignIn = () => {
           </div>
 
           {/* login form */}
-          <form onSubmit={handleSubmit(handleLogin)} className="space-y-5">
+          <form onSubmit={handleSubmit(handleSignIn)} className="space-y-5">
             <div>
               <label className="font-medium">Email</label>
               <input
