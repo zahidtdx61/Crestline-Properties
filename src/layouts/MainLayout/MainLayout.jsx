@@ -7,8 +7,6 @@ const MainLayout = () => {
   const navigation = useNavigation();
   const { isLoading } = useAuth();
 
-  console.log(isLoading);
-
   if (navigation.state === "loading") return <Loader />;
   if (isLoading) return <Loader />;
 

@@ -66,7 +66,7 @@ const Navbar = () => {
             onClick={handleSignOut}
             className="px-5 py-2 bg-red-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105"
           >
-            <NavLink to={"/sign-out"}>Sign Out</NavLink>
+            <NavLink to={"/"}>Sign Out</NavLink>
           </div>
         </>
       ) : (
@@ -75,7 +75,7 @@ const Navbar = () => {
             <NavLink to={"/sign-in"}>Sign In</NavLink>
           </div>
           <div className="px-5 py-2 bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
-            Sign Up
+            <NavLink to={"/sign-up"}>Sign Up</NavLink>
           </div>
         </div>
       )}

@@ -1,71 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-
-  const data = useContext(AuthContext);
-
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const isValidEmail = (email) => emailRegex.test(email);
-  const containsUppercase = (str) => {
-    return /[A-Z]/.test(str);
-  };
-  const containsLowercase = (str) => {
-    return /[a-z]/.test(str);
-  };
-  const containsNumber = (str) => {
-    return /\d/.test(str);
-  };
-  const containsSpecialChar = (str) => {
-    return /[@$&#]/.test(str);
-  };
-
   const { register, handleSubmit } = useForm();
 
-  const handleSignIn = (data) => {
+  const { signInEmail } = useAuth();
+
+  const handleSignIn = async (data) => {
     const { email, password } = data;
 
-    setEmailError(false);
-    setPasswordError(false);
-
-    // validate email
-    if (email.length === 0) {
-      setEmailError("This field is required");
-      return;
-    }
-    if (!isValidEmail(email)) {
-      setEmailError("Invalid email address domain");
-      return;
-    }
-
-    // validate password
-    if (password.length < 6) {
-      setPasswordError("Password must be at least 6 characters long");
-      return;
-    }
-    if (!containsUppercase(password)) {
-      setPasswordError("Password must contain at least one uppercase letter");
-      return;
-    }
-    if (!containsLowercase(password)) {
-      setPasswordError("Password must contain at least one lowercase letter");
-      return;
-    }
-    if (!containsNumber(password)) {
-      setPasswordError("Password must contain at least one number");
-      return;
-    }
-    if (!containsSpecialChar(password)) {
-      setPasswordError(
-        "Password must contain at least one special character (@, $, #, &)"
-      );
-      return;
+    try {
+      const result = await signInEmail(email, password);
+      const { user } = result;
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
     }
 
     console.log(data);
@@ -98,9 +51,7 @@ const SignIn = () => {
                 placeholder="Enter your email"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
               />
-              {emailError && (
-                <p className="text-xs text-red-700 my-0">{emailError}</p>
-              )}
+              
             </div>
 
             <div>
@@ -155,9 +106,7 @@ const SignIn = () => {
                   placeholder="Enter your password"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
                 />
-                {passwordError && (
-                  <p className="text-xs text-red-700 my-0">{passwordError}</p>
-                )}
+                
               </div>
             </div>
             <div className="flex items-center justify-between text-sm">
