@@ -1,22 +1,27 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   const { register, handleSubmit } = useForm();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { signInEmail } = useAuth();
 
   const handleSignIn = async (data) => {
     const { email, password } = data;
+    const prevPage = location?.state || "/";
 
     try {
       const result = await signInEmail(email, password);
       const { user } = result;
       console.log(user);
+      navigate(prevPage);
     } catch (error) {
       console.log(error.message);
     }
@@ -51,7 +56,6 @@ const SignIn = () => {
                 placeholder="Enter your email"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
               />
-              
             </div>
 
             <div>
@@ -106,7 +110,6 @@ const SignIn = () => {
                   placeholder="Enter your password"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-600 shadow-sm rounded-lg"
                 />
-                
               </div>
             </div>
             <div className="flex items-center justify-between text-sm">

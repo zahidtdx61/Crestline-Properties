@@ -1,27 +1,18 @@
-import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { LuMenu } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import UserInfo from "../UserInfo";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const { user, signOut } = useAuth();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      console.log("Sign out successful");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const { user } = useAuth();
 
   const routes = [
     { name: "Home", path: "/", type: "public" },
-    { name: "User Profile", path: "/user-profile", type: "private" },
+    { name: "Profile", path: "/profile", type: "private" },
     { name: "Update Profile", path: "/update-profile", type: "private" },
     { name: "About", path: "/about", type: "public" },
     { name: "Contact", path: "/contact", type: "public" },
@@ -60,15 +51,7 @@ const Navbar = () => {
       </div>
 
       {user ? (
-        <>
-          <Avatar>H</Avatar>
-          <div
-            onClick={handleSignOut}
-            className="px-5 py-2 bg-red-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105"
-          >
-            <NavLink to={"/"}>Sign Out</NavLink>
-          </div>
-        </>
+        <UserInfo />
       ) : (
         <div className={`lg:flex gap-2 hidden lg:static`}>
           <div className="px-5 py-2 bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
