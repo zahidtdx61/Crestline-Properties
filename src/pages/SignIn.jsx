@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
@@ -11,7 +12,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { signInEmail } = useAuth();
+  const { signInEmail, setUser, setIsLoading } = useAuth();
 
   const handleSignIn = async (data) => {
     const { email, password } = data;
@@ -20,8 +21,11 @@ const SignIn = () => {
     try {
       await signInEmail(email, password);
       navigate(prevPage);
+      toast.success("Welcome to Crestline Properties");
     } catch (error) {
-      console.log(error.message);
+      setIsLoading(false);
+      setUser(null);
+      toast.error("Wrong credentials !!!");
     }
 
     console.log(data);

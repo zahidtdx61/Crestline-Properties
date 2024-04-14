@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase/firebase.init";
 
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -39,6 +40,8 @@ const AuthProvider = ({ children }) => {
 
   const authData = {
     user,
+    setUser,
+    setIsLoading,
     isLoading,
     signUpEmail,
     signInEmail,

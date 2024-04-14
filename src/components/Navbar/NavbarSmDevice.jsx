@@ -45,12 +45,16 @@ const NavbarSmDevice = ({ routes, navStyle }) => {
           </ul>
         ))}
 
-        <ul className="px-2 py-1 w-full mt-4 text-center  bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
-          <NavLink to={"/sign-in"}>Sign In</NavLink>
-        </ul>
-        <ul className="px-2 py-1 w-full text-center bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
-          <NavLink to={"/sign-up"}>Sign Up</NavLink>
-        </ul>
+        {!user && (
+          <>
+            <ul className="px-2 py-1 w-full mt-4 text-center  bg-blue-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+              <NavLink to={"/sign-in"}>Sign In</NavLink>
+            </ul>
+            <ul className="px-2 py-1 w-full text-center bg-green-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105">
+              <NavLink to={"/sign-up"}>Sign Up</NavLink>
+            </ul>
+          </>
+        )}
       </div>
     </>
   );

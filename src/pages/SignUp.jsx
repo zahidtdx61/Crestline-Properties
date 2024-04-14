@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const { signUpEmail } = useAuth();
+  const { signUpEmail, setUser, setIsLoading } = useAuth();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
@@ -82,6 +82,8 @@ const SignUp = () => {
       console.log(user);
     } catch (error) {
       console.error(error.message);
+      setIsLoading(false);
+      setUser(null);
     }
   };
 
