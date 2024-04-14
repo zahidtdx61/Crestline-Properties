@@ -18,9 +18,7 @@ const SignIn = () => {
     const prevPage = location?.state || "/";
 
     try {
-      const result = await signInEmail(email, password);
-      const { user } = result;
-      console.log(user);
+      await signInEmail(email, password);
       navigate(prevPage);
     } catch (error) {
       console.log(error.message);
