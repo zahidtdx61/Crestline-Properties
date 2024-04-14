@@ -1,12 +1,18 @@
 import { Avatar } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const UserInfo = () => {
   const { logOut } = useAuth();
   const [open, setOpen] = useState(false);
+
+  const location = useLocation();
+  const pathname = location.pathname;
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const handleUser = () => {
     console.log("Clicked");
@@ -27,7 +33,7 @@ const UserInfo = () => {
 
       <div
         className={`flex items-start flex-row-reverse justify-around absolute duration-1000 w-1/3 max-w-[300px] min-w-[200px] bg-white p-4 rounded shadow ${
-          open ? "top-16 right-4" : "right-4 -top-96"
+          open ? "top-16 lg:top-20 right-4" : "right-4 -top-96"
         }`}
       >
         <button onClick={() => setOpen(false)}>
