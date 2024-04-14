@@ -3,11 +3,11 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase/firebase.init";
-
 
 export const AuthContext = createContext(null);
 
@@ -25,6 +25,14 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const updateUser = (name, imageUrl) => {
+    setIsLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: imageUrl,
+    });
+  };
+
   const logOut = () => {
     setUser(null);
     return signOut(auth);
@@ -32,6 +40,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Observing...");
       setUser(user);
       setIsLoading(false);
     });
@@ -46,6 +55,7 @@ const AuthProvider = ({ children }) => {
     signUpEmail,
     signInEmail,
     logOut,
+    updateUser,
   };
 
   return (

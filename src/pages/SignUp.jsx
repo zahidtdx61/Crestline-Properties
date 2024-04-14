@@ -2,12 +2,13 @@ import { Divider } from "@mui/material";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const { signUpEmail, setUser, setIsLoading } = useAuth();
+  const { signUpEmail, setUser, setIsLoading, updateUser } = useAuth();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
@@ -15,6 +16,9 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [photoUrlError, setPhotoUrlError] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidEmail = (email) => emailRegex.test(email);
@@ -76,10 +80,18 @@ const SignUp = () => {
 
     console.log(data);
 
+    const prevPage = location?.state || "/";
     try {
       const result = await signUpEmail(email, password);
       const { user } = result;
       console.log(user);
+
+      await updateUser(name, photoUrl);
+      setIsLoading(false);
+      console.log('after update',user);
+
+      navigate(prevPage);
+      toast.success("Welcome to Crestline Properties");
     } catch (error) {
       console.error(error.message);
       setIsLoading(false);
