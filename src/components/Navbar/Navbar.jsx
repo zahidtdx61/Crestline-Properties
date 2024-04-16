@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full p-2 lg:py-4 lg:px-8  flex items-center justify-between shadow-lg fixed bg-white">
+    <div className="w-full z-50 p-2 lg:py-4 lg:px-8  flex items-center justify-between shadow-lg fixed bg-white">
       <div>
         <h1 className="text-2xl tracking-wide font-bold select-none hover:scale-105 transition-transform duration-300">
           <NavLink to={"/"}>
