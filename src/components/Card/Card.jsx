@@ -72,7 +72,7 @@ const Card = ({ data }) => {
       </div>
 
       <div
-        data-aos="fade-left"
+        data-aos="fade-up"
         data-aos-duration="1500"
         data-aos-anchor={`#card-anchor-${id}`}
         className="flex justify-end overflow-hidden"
