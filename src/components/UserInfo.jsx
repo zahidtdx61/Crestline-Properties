@@ -8,8 +8,6 @@ const UserInfo = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
 
-  const defaultImage = "https://i.postimg.cc/fL19sCM8/user-3.png";
-
   const location = useLocation();
   const pathname = location.pathname;
   useEffect(() => {
@@ -34,11 +32,19 @@ const UserInfo = () => {
   };
   return (
     <>
-      <button onClick={handleUser}>
-        <Tooltip title={displayName}>
-          <Avatar src={photoURL || defaultImage} />
-        </Tooltip>
-      </button>
+      <div className="flex items-center justify-end gap-3">
+        <button onClick={handleUser}>
+          <Tooltip title={displayName}>
+            <Avatar src={photoURL} />
+          </Tooltip>
+        </button>
+        <button
+          onClick={handleSignOut}
+          className="px-5 py-2 bg-red-500 text-slate-50 rounded hover:bg-opacity-70 hover:scale-105 hidden lg:block"
+        >
+          <NavLink to={"/"}>Sign Out</NavLink>
+        </button>
+      </div>
 
       <div
         className={`flex items-start flex-row-reverse justify-around absolute duration-1000 w-1/3 max-w-[300px] min-w-[200px] bg-white p-4 rounded shadow ${

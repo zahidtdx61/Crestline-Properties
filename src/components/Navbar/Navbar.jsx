@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const routes = [
     { name: "Home", path: "/", type: "public" },
-    { name: "Profile", path: "/profile", type: "private" },
+    { name: "User Profile", path: "/user-profile", type: "private" },
     { name: "Update Profile", path: "/update-profile", type: "private" },
     { name: "About", path: "/about", type: "public" },
     { name: "Contact", path: "/contact", type: "public" },
@@ -16,18 +16,20 @@ const Navbar = () => {
 
   const navStyle = (isActive) => {
     return [
-      isActive ? "text-blue-600" : "text-slate-700",
+      isActive ? "text-blue-600" : "text-slate-950",
       isActive
         ? "border-b-2 border-blue-600 pr-2  lg:px-2 font-semibold"
-        : "font-medium pr-2 lg:px-2",
+        : "font-medium pr-2 lg:px-2", "hover:opacity-75"
     ].join(" ");
   };
 
   return (
-    <div className="w-full p-2 lg:py-4 lg:px-8 flex items-center justify-between shadow-lg fixed bg-white">
+    <div className="w-full p-2 lg:py-4 lg:px-8  flex items-center justify-between shadow-lg fixed bg-white">
       <div>
-        <h1 className="text-2xl font-bold">
-          <NavLink to={"/"}>Crestline Properties</NavLink>
+        <h1 className="text-2xl tracking-wide font-bold select-none hover:scale-105 transition-transform duration-300">
+          <NavLink to={"/"}>
+            Crestline <span className="text-blue-600">Properties</span>
+          </NavLink>
         </h1>
       </div>
 

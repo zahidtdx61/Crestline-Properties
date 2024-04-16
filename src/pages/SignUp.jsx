@@ -84,9 +84,10 @@ const SignUp = () => {
     try {
       const result = await signUpEmail(email, password);
       const { user } = result;
-      console.log(user);
+      console.log('Before Update', user);
 
       await updateUser(name, photoUrl);
+      setUser({...user, displayName: name, photoURL: photoUrl});
       setIsLoading(false);
       console.log('after update',user);
 
