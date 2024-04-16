@@ -42,6 +42,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path:"view-details/:id",
+        element: <div>View Details</div>
+      },
+      {
         path: "sign-up",
         element: <SignUp />,
       },

@@ -4,6 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 const Card = ({ data }) => {
   const {
+    id,
     estate_title,
     status,
     description,
@@ -15,16 +16,26 @@ const Card = ({ data }) => {
   } = data;
 
   return (
-    <div className="w-full p-4 rounded-md bg-white flex flex-col">
+    <div
+      data-aos="zoom-in-up"
+      data-aos-duration="1000"
+      className="w-full p-4 rounded-md bg-white flex flex-col relative"
+    >
       <div className="w-full rounded-md h-[250px] overflow-hidden relative">
         <img
           src={image}
           className="w-full h-full object-cover object-center hover:scale-105 duration-1000"
         />
-        <div className="capitalize font-semibold text-slate-600 bg-zinc-300 absolute top-4 -left-1 px-5 py-1 rounded text-sm">
+        <div
+          data-aos="fade-right"
+          data-aos-delay="1000"
+          data-aos-duration="1000"
+          className="capitalize font-semibold text-slate-600 bg-zinc-300 absolute top-4 -left-1 px-5 py-1 rounded text-sm"
+        >
           {status}
         </div>
       </div>
+
       <div className="mt-4 flex items-center gap-2">
         <IoLocationOutline size={20} /> <p>{location}</p>
       </div>
@@ -40,7 +51,10 @@ const Card = ({ data }) => {
           Facilities:{" "}
         </span>
         {facilities.map((facility, index) => (
-          <span key={index} className="text-slate-600 text-sm font-mulish capitalize">
+          <span
+            key={index}
+            className="text-slate-600 text-sm font-mulish capitalize"
+          >
             {facility}
             {index === facilities.length - 1 ? "" : ", "}
           </span>
@@ -57,10 +71,19 @@ const Card = ({ data }) => {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div
+        data-aos="fade-left"
+        data-aos-duration="1500"
+        data-aos-anchor={`#card-anchor-${id}`}
+        className="flex justify-end overflow-hidden"
+      >
         <button className="bg-blue-700 hover:bg-blue-500 text-zinc-50 font-bold py-2 px-4 rounded mt-4">
           View Property
         </button>
+      </div>
+
+      <div id={`card-anchor-${id}`} className="card-anchor absolute left-0 bottom-[15%]">
+
       </div>
     </div>
   );
