@@ -18,15 +18,15 @@ const Navbar = () => {
     return [
       isActive ? "text-blue-600" : "text-slate-950",
       isActive
-        ? "border-b-2 border-blue-600 pr-2  lg:px-2 font-semibold"
-        : "font-medium pr-2 lg:px-2", "hover:opacity-75"
+        ? "border-b-[3px] border-blue-600 pr-2  lg:px-2 font-semibold"
+        : "font-medium pr-2 lg:px-2", "hover:opacity-75", "py-1"
     ].join(" ");
   };
 
   return (
     <div className="w-full z-50 p-2 lg:py-4 lg:px-8  flex items-center justify-between shadow-lg fixed bg-white">
       <div>
-        <h1 className="text-2xl tracking-wide font-bold select-none hover:scale-105 transition-transform duration-300">
+        <h1 className="text-2xl tracking-wide font-bold select-none hover:scale-105 transition-transform ease-in duration-800">
           <NavLink to={"/"}>
             Crestline <span className="text-blue-600">Properties</span>
           </NavLink>

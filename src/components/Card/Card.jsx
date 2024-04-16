@@ -1,6 +1,9 @@
-import { Divider } from "@mui/material";
+import { Divider, IconButton, Tooltip } from "@mui/material";
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
+import { MdOutlineBookmarkAdd, MdOutlineBookmarkAdded } from "react-icons/md";
+import { RiBuilding3Line } from "react-icons/ri";
 
 const Card = ({ data }) => {
   const {
@@ -14,6 +17,8 @@ const Card = ({ data }) => {
     price,
     area,
   } = data;
+
+  const [bookmark, setBookmark] = useState(false);
 
   return (
     <div
@@ -63,28 +68,62 @@ const Card = ({ data }) => {
       <Divider />
       <div className="font-mulish flex items-center justify-between mt-4">
         <div className="font-medium text-xl">{price}</div>
-        <div>
-          {area}{" "}
-          <span className="text-slate-600">
-            ft<sup>2</sup>
-          </span>
+
+        <div className="flex justify-end items-center gap-1">
+          <div>
+            <RiBuilding3Line size={20} />
+          </div>
+
+          <div>
+            {area}{" "}
+            <span className="text-slate-600">
+              ft<sup>2</sup>
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* <div
+        data-aos="fade-up"
+        data-aos-duration="1500"
+        data-aos-anchor={`#card-anchor-${id}`}
+        className="flex justify-between overflow-hidden"
+      >
+        <button className="bg-blue-700 hover:bg-blue-500 text-zinc-50 font-bold py-2 px-4 rounded mt-4">
+          View Property
+        </button>
+        <button className="bg-red-700 hover:bg-red-500 text-zinc-50 font-bold py-2 px-4 rounded mt-4 ml-2">
+          Add to Wishlist
+        </button>
+      </div> */}
 
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
         data-aos-anchor={`#card-anchor-${id}`}
-        className="flex justify-end overflow-hidden"
+        className="flex justify-between items-center overflow-hidden"
       >
+        <div className="h-fit w-fit mt-4">
+          <Tooltip title={`${bookmark ? "Already Added" : "Add to Wishlist"}`}>
+            <IconButton onClick={() => setBookmark(true)}>
+              {bookmark ? (
+                <MdOutlineBookmarkAdded size={30} />
+              ) : (
+                <MdOutlineBookmarkAdd size={30} />
+              )}
+            </IconButton>
+          </Tooltip>
+        </div>
+
         <button className="bg-blue-700 hover:bg-blue-500 text-zinc-50 font-bold py-2 px-4 rounded mt-4">
           View Property
         </button>
       </div>
 
-      <div id={`card-anchor-${id}`} className="card-anchor absolute left-0 bottom-[15%]">
-
-      </div>
+      <div
+        id={`card-anchor-${id}`}
+        className="card-anchor absolute left-0 bottom-[15%]"
+      ></div>
     </div>
   );
 };
