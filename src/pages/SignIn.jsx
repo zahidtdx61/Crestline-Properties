@@ -119,7 +119,7 @@ const SignIn = () => {
               </div>
             </div>
             <div
-              data-aos-anchor="#sign-in-anchor"
+              data-aos-anchor-placement="top-bottom"
               data-aos="zoom-in"
               data-aos-delay="1200"
               data-aos-duration="1000"
@@ -146,7 +146,7 @@ const SignIn = () => {
             </div>
 
             <input
-              data-aos-anchor="#sign-in-anchor"
+              data-aos-anchor-placement="top-bottom"
               data-aos="zoom-in"
               data-aos-delay="1500"
               data-aos-duration="1000"
@@ -158,7 +158,7 @@ const SignIn = () => {
 
           {/* social login */}
           <button
-            data-aos-anchor="#sign-in-anchor"
+            data-aos-anchor-placement="top-bottom"
             data-aos="zoom-in"
             data-aos-delay="2000"
             data-aos-duration="1000"
@@ -197,7 +197,7 @@ const SignIn = () => {
             Continue with Google
           </button>
           <p
-            data-aos-anchor="#sign-in-anchor"
+            data-aos-anchor-placement="top-bottom"
             data-aos="zoom-in"
             data-aos-delay="2200"
             data-aos-duration="1000"

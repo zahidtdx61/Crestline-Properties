@@ -11,11 +11,19 @@ const NavbarSmDevice = ({ routes, navStyle }) => {
 
   const location = useLocation();
   const pathname = location.pathname;
-  const { user } = useAuth();
-
+  const { user, logOut } = useAuth();
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+      console.log("Sign out successful");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -44,6 +52,14 @@ const NavbarSmDevice = ({ routes, navStyle }) => {
             </NavLink>
           </ul>
         ))}
+
+        {user && (
+          <ul>
+            <button  onClick={handleSignOut}>
+              Sign Out
+            </button>
+          </ul>
+        )}
 
         {!user && (
           <>

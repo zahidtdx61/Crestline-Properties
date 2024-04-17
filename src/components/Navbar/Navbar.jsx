@@ -10,8 +10,7 @@ const Navbar = () => {
     { name: "Home", path: "/", type: "public" },
     { name: "User Profile", path: "/user-profile", type: "private" },
     { name: "Update Profile", path: "/update-profile", type: "private" },
-    { name: "About", path: "/about", type: "public" },
-    { name: "Contact", path: "/contact", type: "public" },
+    { name: "Wishlist", path: "/wishlist", type: "private" },
   ];
 
   const navStyle = (isActive) => {
@@ -19,7 +18,9 @@ const Navbar = () => {
       isActive ? "text-blue-600" : "text-slate-950",
       isActive
         ? "border-b-[3px] border-blue-600 pr-2  lg:px-2 font-semibold"
-        : "font-medium pr-2 lg:px-2", "hover:opacity-75", "py-1"
+        : "font-medium pr-2 lg:px-2",
+      "hover:opacity-75",
+      "py-1",
     ].join(" ");
   };
 
