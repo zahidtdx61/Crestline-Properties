@@ -1,6 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Outlet, useNavigation } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
@@ -20,6 +21,7 @@ const MainLayout = () => {
         <Navbar />
       </div>
       <Outlet />
+      <Footer />
     </div>
   );
 };
