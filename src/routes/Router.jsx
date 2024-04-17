@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import NotFoundPage from "../pages/NotFoundPage";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import UpdateProfile from "../pages/UpdateProfile";
 import UserProfile from "../pages/UserProfile";
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         path: "/update-profile",
         element: (
           <PrivateRoutes>
-            <div>Update Profile</div>
+            <UpdateProfile />
           </PrivateRoutes>
         ),
       },
