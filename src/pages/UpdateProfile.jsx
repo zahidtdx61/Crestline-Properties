@@ -1,27 +1,29 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../hooks/useAuth";
 
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const UpdateProfile = () => {
   const { user, updateUser, setUser, setIsLoading } = useAuth();
   const { displayName, email, photoURL } = user;
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const { name, photoUrl } = data;
-    await updateUser(name, photoUrl);
-    setUser({ ...user, displayName: name, photoURL: photoUrl });
-    setIsLoading(false);
-    console.log("after update", user);
-  };
 
-  useEffect(() => {
-    setValue("name", displayName);
-    setValue("email", email);
-    setValue("photoUrl", photoURL);
-  }, [displayName, email, photoURL, setValue]);
+    if (name !== displayName || photoUrl !== photoURL) {
+      try {
+        await updateUser(name, photoUrl);
+        setUser({ ...user, displayName: name, photoURL: photoUrl });
+        setIsLoading(false);
+        toast.success("Profile updated successfully!");
+      } catch (error) {
+        console.error(error.message);
+        setIsLoading(false);
+      }
+    }
+  };
 
   return (
     <>
@@ -52,6 +54,7 @@ const UpdateProfile = () => {
               </label>
               <input
                 id="name"
+                {...register("name")}
                 type="text"
                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full"
                 defaultValue={displayName}
