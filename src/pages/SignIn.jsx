@@ -118,7 +118,13 @@ const SignIn = () => {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-between text-sm">
+            <div
+              data-aos-anchor="#sign-in-anchor"
+              data-aos="zoom-in"
+              data-aos-delay="1200"
+              data-aos-duration="1000"
+              className="flex items-center justify-between text-sm"
+            >
               <div className="flex items-center gap-x-3">
                 <input
                   type="checkbox"
@@ -140,7 +146,7 @@ const SignIn = () => {
             </div>
 
             <input
-              data-aos-anchor={`#sign-in-anchor`}
+              data-aos-anchor="#sign-in-anchor"
               data-aos="zoom-in"
               data-aos-delay="1500"
               data-aos-duration="1000"
@@ -152,7 +158,7 @@ const SignIn = () => {
 
           {/* social login */}
           <button
-            data-aos-anchor='#sign-in-anchor'
+            data-aos-anchor="#sign-in-anchor"
             data-aos="zoom-in"
             data-aos-delay="2000"
             data-aos-duration="1000"
@@ -190,7 +196,13 @@ const SignIn = () => {
             </svg>
             Continue with Google
           </button>
-          <p className="text-center">
+          <p
+            data-aos-anchor="#sign-in-anchor"
+            data-aos="zoom-in"
+            data-aos-delay="2200"
+            data-aos-duration="1000"
+            className="text-center"
+          >
             Don&apos;t have an account?{" "}
             <Link
               to={"/sign-up"}
