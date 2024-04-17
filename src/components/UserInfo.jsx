@@ -5,7 +5,6 @@ import useAuth from "../hooks/useAuth";
 const UserInfo = () => {
   const { user, logOut } = useAuth();
   const { displayName, photoURL } = user;
-  console.log("Info", user);
 
   const handleSignOut = async () => {
     try {

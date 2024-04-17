@@ -8,7 +8,14 @@ import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const { signUpEmail, setUser, setIsLoading, updateUser } = useAuth();
+  const {
+    signUpEmail,
+    setUser,
+    setIsLoading,
+    updateUser,
+    signInGoogle,
+    signInGithub,
+  } = useAuth();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
@@ -19,6 +26,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const prevPage = location?.state || "/";
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidEmail = (email) => emailRegex.test(email);
@@ -80,7 +88,6 @@ const SignUp = () => {
 
     console.log(data);
 
-    const prevPage = location?.state || "/";
     try {
       const result = await signUpEmail(email, password);
       const { user } = result;
@@ -94,9 +101,39 @@ const SignUp = () => {
       navigate(prevPage);
       toast.success("Welcome to Crestline Properties");
     } catch (error) {
-      console.error(error.message);
+      // console.error('get error: ', error.code, error.message);
+      if (error.code === "auth/email-already-in-use")
+        toast.error("Email already in use");
       setIsLoading(false);
       setUser(null);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInGoogle();
+      const user = result.user;
+      setUser(user);
+      navigate(prevPage);
+      toast.success("Welcome to Crestline Properties");
+    } catch (error) {
+      setIsLoading(false);
+      setUser(null);
+      toast.error("Google sign in failed !!!");
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    try {
+      const result = await signInGithub();
+      const user = result.user;
+      setUser(user);
+      navigate(prevPage);
+      toast.success("Welcome to Crestline Properties");
+    } catch (error) {
+      setIsLoading(false);
+      setUser(null);
+      toast.error("Github sign in failed !!!");
     }
   };
 
@@ -127,6 +164,7 @@ const SignUp = () => {
             </div>
             <div className="grid grid-cols-2 gap-x-3 my-4">
               <button
+                onClick={handleGoogleSignIn}
                 data-aos="zoom-in"
                 data-aos-duration="500"
                 className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
@@ -163,6 +201,7 @@ const SignUp = () => {
                 </svg>
               </button>
               <button
+                onClick={handleGithubSignIn}
                 data-aos="zoom-in"
                 data-aos-delay="500"
                 data-aos-duration="500"
