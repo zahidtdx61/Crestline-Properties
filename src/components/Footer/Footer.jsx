@@ -8,7 +8,7 @@ import xLogo from "/x.svg";
 
 const Footer = () => {
   return (
-    <div className="w-full mt-28 py-24 px-6 bg-zinc-600 font-mulish">
+    <div className="w-full mt-28 py-24 px-6 bg-zinc-800 font-mulish">
       <div className="max-w-screen-md mx-auto">
 
         <div className="flex mb-8 justify-between text-zinc-300">

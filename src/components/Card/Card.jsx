@@ -1,9 +1,10 @@
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineBookmarkAdd, MdOutlineBookmarkAdded } from "react-icons/md";
 import { RiBuilding3Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
   const {
@@ -100,29 +101,26 @@ const Card = ({ data }) => {
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
-        data-aos-anchor={`#card-anchor-${id}`}
+        // data-aos-anchor={`#card-anchor-${id}`}
+        data-aos-anchor-placement="top-bottom"
         className="flex justify-between items-center overflow-hidden"
       >
         <div className="h-fit w-fit mt-4">
           <Tooltip title={`${bookmark ? "Already Added" : "Add to Wishlist"}`}>
             <IconButton onClick={() => setBookmark(true)}>
-              {bookmark ? (
-                <MdOutlineBookmarkAdded size={30} />
-              ) : (
-                <MdOutlineBookmarkAdd size={30} />
-              )}
+              {!bookmark ? <FaRegStar size={30} /> : <FaStar size={30} />}
             </IconButton>
           </Tooltip>
         </div>
 
         <button className="bg-blue-700 hover:bg-blue-500 text-zinc-50 font-bold py-2 px-4 rounded mt-4">
-          View Property
+          <Link to={`/view-details/${id}`}>View Property</Link>
         </button>
       </div>
 
       <div
         id={`card-anchor-${id}`}
-        className="card-anchor absolute left-0 bottom-[15%]"
+        className="card-anchor absolute left-0 bottom-[10%]"
       ></div>
     </div>
   );

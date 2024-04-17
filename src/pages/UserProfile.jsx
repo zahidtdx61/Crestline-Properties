@@ -15,7 +15,7 @@ const UserProfile = () => {
       </Helmet>
       <div className="min-h-[calc(100vh-80px)] w-full mt-12 p-2">
         <div className="max-w-screen-lg mx-auto flex flex-col items-center">
-          <div className="animate__animated animate__heartBeat text-4xl text-center font-mulish">
+          <div className="animate__animated animate__fadeInDown text-4xl text-center font-mulish">
             Welcome,{" "}
             <span className="font-lexend">{displayName || "User"}</span>
           </div>
