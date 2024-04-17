@@ -1,14 +1,9 @@
 import { Avatar, Tooltip } from "@mui/material";
-import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const UserInfo = () => {
   const { user, logOut } = useAuth();
-
-  // useEffect(() => {
-    
-  // }, [user]);
   const { displayName, photoURL } = user;
   console.log("Info", user);
 

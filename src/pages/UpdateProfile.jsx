@@ -71,7 +71,7 @@ const UpdateProfile = () => {
                 id="email"
                 type="email"
                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full"
-                defaultValue={email}
+                defaultValue={email || "Not available"}
                 disabled
                 {...register("email")}
               />

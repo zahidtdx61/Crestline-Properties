@@ -29,7 +29,7 @@ const UserProfile = () => {
           <div>
             <div className="mt-8 text-xl font-mulish ">
               <div className="text-zinc-600">
-                <span className="font-semibold">Email: </span> {email}
+                <span className="font-semibold">Email: </span> {email || "Not available"}
               </div>
               <div className="text-zinc-600">
                 <span className="font-semibold">Name: </span> {displayName}
