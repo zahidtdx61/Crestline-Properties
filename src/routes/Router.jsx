@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import NotFoundPage from "../pages/NotFoundPage";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import UserProfile from "../pages/UserProfile";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         path: "/user-profile",
         element: (
           <PrivateRoutes>
-            <div>Profile</div>
+            <UserProfile />
           </PrivateRoutes>
         ),
       },
@@ -42,8 +43,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"view-details/:id",
-        element: <div>View Details</div>
+        path: "view-details/:id",
+        element: <div>View Details</div>,
       },
       {
         path: "sign-up",

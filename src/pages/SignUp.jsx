@@ -281,6 +281,7 @@ const SignUp = () => {
                 data-aos="fade-down"
                 data-aos-delay="2100"
                 data-aos-duration="300"
+                data-aos-anchor="#sign-up-anchor"
               >
                 <label className="font-medium">Photo URL</label>
                 <input
@@ -299,6 +300,7 @@ const SignUp = () => {
                 data-aos="fade-down"
                 data-aos-delay="2400"
                 data-aos-duration="300"
+                data-aos-anchor="#sign-up-anchor"
               >
                 <label className="font-medium">Password</label>
                 <div className="relative max-w-full mt-2">
@@ -372,7 +374,7 @@ const SignUp = () => {
 
         <div
           id="sign-up-anchor"
-          className="absolute left-0 bottom-[25%] size-4 bg-black"
+          className="absolute left-0 bottom-[25%]"
         ></div>
       </div>
     </>
