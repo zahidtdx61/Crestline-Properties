@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 import UpdateProfile from "../pages/UpdateProfile";
 import UserProfile from "../pages/UserProfile";
 import ViewDetails from "../pages/ViewDetails";
+import Wishlist from "../pages/Wishlist";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: () => fetch("/data.json"),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <PrivateRoutes>
+            <Wishlist />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "sign-up",
