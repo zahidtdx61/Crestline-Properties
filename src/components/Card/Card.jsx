@@ -1,10 +1,13 @@
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { RiBuilding3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import useWish from "../../hooks/useWish";
 
 const Card = ({ data }) => {
   const {
@@ -20,6 +23,32 @@ const Card = ({ data }) => {
   } = data;
 
   const [bookmark, setBookmark] = useState(false);
+  const { markWishlist, removeFromWishlist } = useWish();
+  const { user } = useAuth();
+
+  const handleWishlist = () => {
+    if (!user) {
+      toast.error("Please login to add to wishlist");
+      return;
+    }
+    if (bookmark) {
+      removeFromWishlist(user.uid, data);
+    } else {
+      markWishlist(user.uid, data);
+    }
+    setBookmark((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem(user?.uid));
+    if (data) {
+      const found = data.find((item) => item.id === id);
+      if (found) {
+        console.log("found", found);
+        setBookmark(true);
+      }
+    }
+  }, [user?.uid, id]);
 
   return (
     <div
@@ -107,7 +136,7 @@ const Card = ({ data }) => {
       >
         <div className="h-fit w-fit mt-4">
           <Tooltip title={`${bookmark ? "Already Added" : "Add to Wishlist"}`}>
-            <IconButton onClick={() => setBookmark(true)}>
+            <IconButton onClick={handleWishlist}>
               {!bookmark ? <FaRegStar size={30} /> : <FaStar size={30} />}
             </IconButton>
           </Tooltip>
