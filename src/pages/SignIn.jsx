@@ -37,7 +37,7 @@ const SignIn = () => {
         <title>Crestline | Sign In</title>
       </Helmet>
 
-      <main className="w-full flex flex-col items-center justify-center px-4">
+      <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col items-center justify-start mt-4 px-4">
         <div className="max-w-sm w-full text-gray-600 space-y-5">
           <div className="text-center pb-8">
             <div className="mt-5">
@@ -49,7 +49,7 @@ const SignIn = () => {
 
           {/* login form */}
           <form onSubmit={handleSubmit(handleSignIn)} className="space-y-5">
-            <div>
+            <div data-aos="fade-down" data-aos-duration="1000">
               <label className="font-medium">Email</label>
               <input
                 {...register("email")}
@@ -60,7 +60,11 @@ const SignIn = () => {
               />
             </div>
 
-            <div>
+            <div
+              data-aos="fade-down"
+              data-aos-delay="800"
+              data-aos-duration="1000"
+            >
               <label className="font-medium">Password</label>
               <div className="relative max-w-full mt-2">
                 <span
@@ -136,14 +140,24 @@ const SignIn = () => {
             </div>
 
             <input
+              data-aos-anchor={`#sign-in-anchor`}
+              data-aos="zoom-in"
+              data-aos-delay="1500"
+              data-aos-duration="1000"
               type="submit"
-              className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+              className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 hover:cursor-pointer"
               value="Log In"
             />
           </form>
 
           {/* social login */}
-          <button className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
+          <button
+            data-aos-anchor={`#sign-in-anchor`}
+            data-aos="zoom-in"
+            data-aos-delay="2000"
+            data-aos-duration="1000"
+            className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
+          >
             <svg
               className="w-5 h-5"
               viewBox="0 0 48 48"
@@ -186,7 +200,11 @@ const SignIn = () => {
             </Link>
           </p>
         </div>
-      </main>
+        <div
+          id={`sign-in-anchor`}
+          className="absolute left-0 bottom-[35%]"
+        ></div>
+      </section>
     </>
   );
 };
