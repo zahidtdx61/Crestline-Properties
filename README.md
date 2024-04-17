@@ -1,69 +1,85 @@
-# Base React Project Template
+# Crestline Properties
 
-This is a base template for starting new React projects. It comes pre-configured with various packages and tools to streamline the development process.
+Welcome to Crestline Properties, a React-based web application for property listings and user management with authentication using Firebase. Users can sign up and sign in using email, Google, or GitHub accounts. Once authenticated, users can view property listings, manage their profile, and create a wishlist of properties.
+
+## Live Preview
+
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fcrestline-properties.vercel.app%2F)](https://crestline-properties.vercel.app/)
+Check out the live website: [Crestline Properties](https://crestline-properties.vercel.app/)
 
 ## Features
 
-- **React**: A JavaScript library for building user interfaces.
-- **React DOM**: Provides DOM-specific methods that can be used at the top level of a web app to enable React components to be rendered into the DOM.
-- **React Helmet Async**: A package for managing document head tags in React.
-- **React Router DOM**: Declarative routing for React.
-- **React Prop-Types**: A library for typechecking React props and similar objects.
+- **Authentication**:
 
-## Development Dependencies
+  - Users can sign up and sign in using email/password, Google, or GitHub accounts.
+  - Private routes ensure that certain features (e.g., viewing property details, managing profile, accessing wishlist) are only available to authenticated users.
 
-- **PostCSS**: A tool for transforming styles with JavaScript plugins.
-- **Tailwind CSS**: A utility-first CSS framework for building custom designs quickly.
-- **Vite**: A fast, opinionated web dev build tool that serves your code via native ES Modules.
+- **Property Listings**:
 
-## Installation
+  - Users can view various property listings with detailed information.
+  - Clicking on the "View Property" button provides detailed information about the property (accessible only to logged-in users).
 
-You can install the project in two ways:
+- **Profile Management**:
 
-### 1. Cloning the Repository
+  - Logged-in users can update their profiles securely.
 
-Clone the repository to your local machine using the following command:
+- **Wishlist**:
+  - Users can add properties to their wishlist by clicking on a star icon on property cards.
+  - The wishlist page displays the properties a user has saved, and users can remove properties from their wishlist.
 
-```bash
-git clone https://github.com/zahidtdx61/Base-React-Project-Template.git
-```
+## Technologies Used
 
-Then, navigate to the project directory and install dependencies:
+- **React**: Front-end library for building user interfaces.
+- **Firebase**: Provides authentication services for user management.
+- **Material-UI**: React UI framework for building responsive web applications.
+- **React Router DOM**: For client-side routing within the React application.
+- **React Hook Form**: Library for managing form state and validation.
+- **Swiper**: For implementing image sliders.
+- **Animate.css** and **AOS**: Libraries for adding animations to components.
+- **React Icons**: Library providing popular icons as React components.
 
-```bash
-cd Base-React-Project-Template
-npm install
-```
+## How to Use Crestline Properties
 
-### 2. Downloading as a .zip File
+Welcome to Crestline Properties! This guide will walk you through how to use the features of this React-based web application for property listings and user management.
 
-1. Download the project folder as a .zip file from the repository.
-2. Extract the contents of the .zip file to your desired location on your local machine.
-3. Open a terminal and navigate to the extracted folder (Base-React-Project-Template).
-4. Install project dependencies:
+#### 1. Signing Up and Signing In
 
-```bash
-npm install
-```
+- Visit the [Crestline Properties](https://crestline-properties.vercel.app/) website.
+- Click on "Sign Up" to create a new account using your email address and password.
+- Alternatively, use the Google or GitHub sign-in options for quick authentication.
 
-## Usage
+#### 2. Viewing Property Listings
 
-After installing dependencies, you can start the development server:
+- Once signed in, you will be directed to the home page displaying various property listings.
+- Browse through the properties to view their basic information.
 
-```bash
-npm run dev
-```
+#### 3. Viewing Detailed Property Information
 
-## Deployment
+- Click on the "View Property" button on any property card to access detailed information about the property.
+- Note: Accessing detailed property information requires you to be logged in.
 
-This project includes configuration for deployment on various platforms:
+#### 4. Managing Your Profile
 
-- **Vercel**: For deployment on Vercel, the necessary configuration can be found in `vercel.json` file in the root folder.
-- **Netlify**: For deployment on Netlify, the necessary configuration can be found in `_redirects` file located in the `public` folder.
-- **Surge**: For deployment on Surge, update the domain name in the `CNAME` file located in the `public` folder.
+- Click on your profile icon or navigate to the profile section.
+- Update your profile details such as name, email, or profile picture.
 
-Make sure to adjust these configurations according to your deployment settings.
+#### 5. Adding Properties to Wishlist
+
+- On the home page, each property card has a star icon.
+- Click on the star icon to add a property to your wishlist.
+- Click on the icon again to remove a property from your wishlist.
+- Only logged-in users can add properties to the wishlist.
+
+#### 6. Viewing and Managing Wishlist
+
+- Navigate to the wishlist section (accessible from the navigation menu).
+- Here, you can view all the properties you have added to your wishlist.
+- Remove properties from your wishlist by clicking on the remove button.
+
+#### 7. Viewing Private Routes
+
+- Certain routes, such as viewing detailed property information or managing your profile, are private and accessible only to logged-in users.
 
 ## Contributing
 
-Contributions are welcome! If you have ideas for improvements or new features, feel free to open an issue or submit a pull request.
+Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, feel free to open an issue or submit a pull request.
