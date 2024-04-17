@@ -152,7 +152,7 @@ const SignIn = () => {
 
           {/* social login */}
           <button
-            data-aos-anchor={`#sign-in-anchor`}
+            data-aos-anchor='#sign-in-anchor'
             data-aos="zoom-in"
             data-aos-delay="2000"
             data-aos-duration="1000"

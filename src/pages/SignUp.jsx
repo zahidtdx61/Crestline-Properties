@@ -2,9 +2,9 @@ import { Divider } from "@mui/material";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -84,12 +84,12 @@ const SignUp = () => {
     try {
       const result = await signUpEmail(email, password);
       const { user } = result;
-      console.log('Before Update', user);
+      console.log("Before Update", user);
 
       await updateUser(name, photoUrl);
-      setUser({...user, displayName: name, photoURL: photoUrl});
+      setUser({ ...user, displayName: name, photoURL: photoUrl });
       setIsLoading(false);
-      console.log('after update',user);
+      console.log("after update", user);
 
       navigate(prevPage);
       toast.success("Welcome to Crestline Properties");
@@ -106,7 +106,7 @@ const SignUp = () => {
         <title>Crestline | Sign Up</title>
       </Helmet>
 
-      <div className="w-full flex mb-4">
+      <div className="w-full flex mb-4 relative">
         <div className="flex-1 flex items-center justify-center h-full">
           <div className="w-full max-w-md px-4 bg-white text-gray-600 sm:px-0">
             <div className="">
@@ -126,7 +126,11 @@ const SignUp = () => {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-x-3 my-4">
-              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <button
+                data-aos="zoom-in"
+                data-aos-duration="500"
+                className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
+              >
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -158,7 +162,12 @@ const SignUp = () => {
                   </defs>
                 </svg>
               </button>
-              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <button
+                data-aos="zoom-in"
+                data-aos-delay="500"
+                data-aos-duration="500"
+                className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
+              >
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -171,7 +180,12 @@ const SignUp = () => {
                   />
                 </svg>
               </button>
-              <button className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <button
+                data-aos="zoom-in"
+                data-aos-delay="1000"
+                data-aos-duration="500"
+                className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
+              >
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 48 48"
@@ -227,7 +241,11 @@ const SignUp = () => {
 
             {/* sign up form */}
             <form onSubmit={handleSubmit(handleSignUp)} className="space-y-5">
-              <div>
+              <div
+                data-aos="fade-down"
+                data-aos-delay="1500"
+                data-aos-duration="300"
+              >
                 <label className="font-medium">Name</label>
                 <input
                   type="text"
@@ -241,7 +259,11 @@ const SignUp = () => {
                 )}
               </div>
 
-              <div>
+              <div
+                data-aos="fade-down"
+                data-aos-delay="1800"
+                data-aos-duration="300"
+              >
                 <label className="font-medium">Email</label>
                 <input
                   {...register("email")}
@@ -255,7 +277,11 @@ const SignUp = () => {
                 )}
               </div>
 
-              <div>
+              <div
+                data-aos="fade-down"
+                data-aos-delay="2100"
+                data-aos-duration="300"
+              >
                 <label className="font-medium">Photo URL</label>
                 <input
                   type="text"
@@ -269,7 +295,11 @@ const SignUp = () => {
                 )}
               </div>
 
-              <div>
+              <div
+                data-aos="fade-down"
+                data-aos-delay="2400"
+                data-aos-duration="300"
+              >
                 <label className="font-medium">Password</label>
                 <div className="relative max-w-full mt-2">
                   <span
@@ -327,12 +357,23 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+              <button
+                data-aos-anchor="#sign-up-anchor"
+                data-aos="zoom-in"
+                data-aos-delay="2700"
+                data-aos-duration="1000"
+                className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+              >
                 Create account
               </button>
             </form>
           </div>
         </div>
+
+        <div
+          id="sign-up-anchor"
+          className="absolute left-0 bottom-[25%] size-4 bg-black"
+        ></div>
       </div>
     </>
   );
