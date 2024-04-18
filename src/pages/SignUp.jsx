@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
@@ -15,6 +15,7 @@ const SignUp = () => {
     updateUser,
     signInGoogle,
     signInGithub,
+    user,
   } = useAuth();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -136,6 +137,11 @@ const SignUp = () => {
       toast.error("Github sign in failed !!!");
     }
   };
+
+  if (user) {
+    toast.error("You are already signed in");
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

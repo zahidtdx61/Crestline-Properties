@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const SignIn = () => {
@@ -13,8 +13,19 @@ const SignIn = () => {
   const location = useLocation();
   const prevPage = location?.state || "/";
 
-  const { signInEmail, setUser, setIsLoading, signInGoogle, signInGithub } =
-    useAuth();
+  const {
+    signInEmail,
+    setUser,
+    setIsLoading,
+    signInGoogle,
+    signInGithub,
+    user,
+  } = useAuth();
+
+  if (user) {
+    toast.error("You are already signed in");
+    return <Navigate to="/" />;
+  }
 
   const handleSignIn = async (data) => {
     const { email, password } = data;
