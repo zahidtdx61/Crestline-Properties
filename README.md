@@ -38,6 +38,14 @@ Check out the live website: [Crestline Properties](https://crestline-properties.
 - **Animate.css** and **AOS**: Libraries for adding animations to components.
 - **React Icons**: Library providing popular icons as React components.
 
+## Used npm Packages
+
+- **`react-router-dom`**: Used for client-side routing within the React application.
+- **`react-hook-form`**: Used for managing form state and validation.
+- **`swiper`**: Used for implementing image sliders.
+- **`animate.css`** and **`aos`**: Used for adding animations to components.
+- **`react-icons`**: Used for providing popular icons as React components.
+
 ## How to Use Crestline Properties
 
 Welcome to Crestline Properties! This guide will walk you through how to use the features of this React-based web application for property listings and user management.
