@@ -32,7 +32,7 @@ const NotFoundPage = () => {
                 Go back
               </button>
               <button
-                onClick={() => goBack("/contact")}
+                onClick={() => goBack("/")}
                 className="block py-2 px-4 text-gray-700 hover:bg-gray-50 font-medium duration-150 active:bg-gray-100 border rounded-lg"
               >
                 Contact support
