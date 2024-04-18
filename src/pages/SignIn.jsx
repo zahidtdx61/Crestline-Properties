@@ -77,7 +77,7 @@ const SignIn = () => {
 
           {/* login form */}
           <form onSubmit={handleSubmit(handleSignIn)} className="space-y-5">
-            <div data-aos="fade-down" data-aos-duration="1000">
+            <div data-aos="fade-down" data-aos-duration="700">
               <label className="font-medium">Email</label>
               <input
                 {...register("email")}
@@ -90,8 +90,8 @@ const SignIn = () => {
 
             <div
               data-aos="fade-down"
-              data-aos-delay="800"
-              data-aos-duration="1000"
+              data-aos-delay="500"
+              data-aos-duration="700"
             >
               <label className="font-medium">Password</label>
               <div className="relative max-w-full mt-2">
@@ -149,8 +149,8 @@ const SignIn = () => {
             <div
               data-aos-anchor-placement="top-bottom"
               data-aos="zoom-in"
-              data-aos-delay="1200"
-              data-aos-duration="1000"
+              data-aos-delay="1000"
+              data-aos-duration="700"
               className="flex items-center justify-between text-sm"
             >
               <div className="flex items-center gap-x-3">
@@ -176,8 +176,8 @@ const SignIn = () => {
             <input
               data-aos-anchor-placement="top-bottom"
               data-aos="zoom-in"
-              data-aos-delay="1500"
-              data-aos-duration="1000"
+              data-aos-delay="1300"
+              data-aos-duration="700"
               type="submit"
               className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 hover:cursor-pointer"
               value="Log In"
@@ -189,8 +189,8 @@ const SignIn = () => {
             onClick={handleGoogleSignIn}
             data-aos-anchor-placement="top-bottom"
             data-aos="zoom-in"
-            data-aos-delay="2000"
-            data-aos-duration="1000"
+            data-aos-delay="1500"
+            data-aos-duration="700"
             className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
           >
             <svg
@@ -230,8 +230,8 @@ const SignIn = () => {
             onClick={handleGithubSignIn}
             data-aos-anchor-placement="top-bottom"
             data-aos="zoom-in"
-            data-aos-delay="2000"
-            data-aos-duration="1000"
+            data-aos-delay="1500"
+            data-aos-duration="700"
             className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
           >
             <svg
@@ -288,8 +288,8 @@ const SignIn = () => {
           <p
             data-aos-anchor-placement="top-bottom"
             data-aos="zoom-in"
-            data-aos-delay="2200"
-            data-aos-duration="1000"
+            data-aos-delay="1600"
+            data-aos-duration="700"
             className="text-center"
           >
             Don&apos;t have an account?{" "}

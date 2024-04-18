@@ -18,7 +18,7 @@ const UserInfo = () => {
     <>
       <div className="flex items-center justify-end gap-3">
         <button>
-          <Tooltip title={displayName}>
+          <Tooltip title={displayName || "Not available"}>
             <Avatar src={photoURL} />
           </Tooltip>
         </button>

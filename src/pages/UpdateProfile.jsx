@@ -57,7 +57,7 @@ const UpdateProfile = () => {
                 {...register("name")}
                 type="text"
                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full"
-                defaultValue={displayName}
+                defaultValue={displayName || "Not available"}
               />
             </div>
             <div className="mb-4">

@@ -32,7 +32,7 @@ const UserProfile = () => {
                 <span className="font-semibold">Email: </span> {email || "Not available"}
               </div>
               <div className="text-zinc-600">
-                <span className="font-semibold">Name: </span> {displayName}
+                <span className="font-semibold">Name: </span> {displayName || "Not available"}
               </div>
             </div>
             <div className="mt-16 flex gap-3 items-center animate__animated animate__zoomIn">

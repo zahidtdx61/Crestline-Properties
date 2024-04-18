@@ -12,9 +12,11 @@ const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState(null);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(user?.uid));
+    const data = user ? JSON.parse(localStorage.getItem(user?.uid)) : null;
     if (data) {
       setWishlist(data);
+    }else{
+      setWishlist(null);
     }
   }, [user]);
 

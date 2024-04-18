@@ -166,7 +166,7 @@ const SignUp = () => {
               <button
                 onClick={handleGoogleSignIn}
                 data-aos="zoom-in"
-                data-aos-duration="500"
+                // data-aos-duration="500"
                 className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
               >
                 <svg
@@ -203,8 +203,8 @@ const SignUp = () => {
               <button
                 onClick={handleGithubSignIn}
                 data-aos="zoom-in"
-                data-aos-delay="500"
-                data-aos-duration="500"
+                data-aos-delay="400"
+                // data-aos-duration="500"
                 className="flex items-center justify-center py-2 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
               >
                 <svg
@@ -264,8 +264,8 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(handleSignUp)} className="space-y-5">
               <div
                 data-aos="fade-down"
-                data-aos-delay="1500"
-                data-aos-duration="300"
+                data-aos-delay="700"
+                data-aos-duration="400"
               >
                 <label className="font-medium">Name</label>
                 <input
@@ -282,8 +282,8 @@ const SignUp = () => {
 
               <div
                 data-aos="fade-down"
-                data-aos-delay="1800"
-                data-aos-duration="300"
+                data-aos-delay="900"
+                data-aos-duration="400"
               >
                 <label className="font-medium">Email</label>
                 <input
@@ -300,8 +300,8 @@ const SignUp = () => {
 
               <div
                 data-aos="fade-down"
-                data-aos-delay="2100"
-                data-aos-duration="300"
+                data-aos-delay="1100"
+                data-aos-duration="400"
                 data-aos-anchor="#sign-up-anchor"
               >
                 <label className="font-medium">Photo URL</label>
@@ -319,8 +319,8 @@ const SignUp = () => {
 
               <div
                 data-aos="fade-down"
-                data-aos-delay="2400"
-                data-aos-duration="300"
+                data-aos-delay="1300"
+                data-aos-duration="400"
                 data-aos-anchor="#sign-up-anchor"
               >
                 <label className="font-medium">Password</label>
@@ -383,8 +383,8 @@ const SignUp = () => {
               <button
                 data-aos-anchor="#sign-up-anchor"
                 data-aos="zoom-in"
-                data-aos-delay="2700"
-                data-aos-duration="1000"
+                data-aos-delay="1500"
+                data-aos-duration="600"
                 className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
               >
                 Create account

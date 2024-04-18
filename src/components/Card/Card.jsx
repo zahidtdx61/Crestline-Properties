@@ -23,7 +23,7 @@ const Card = ({ data }) => {
   } = data;
 
   const [bookmark, setBookmark] = useState(false);
-  const { markWishlist, removeFromWishlist } = useWish();
+  const { markWishlist, removeFromWishlist, wishlist } = useWish();
   const { user } = useAuth();
 
   const handleWishlist = () => {
@@ -40,15 +40,17 @@ const Card = ({ data }) => {
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(user?.uid));
-    if (data) {
-      const found = data.find((item) => item.id === id);
+    // const data = JSON.parse(localStorage.getItem(user?.uid));
+    if (wishlist) {
+      const found = wishlist.find((item) => item.id === id);
       if (found) {
-        console.log("found", found);
+        // console.log("found", found);
         setBookmark(true);
+      }else{
+        setBookmark(false);
       }
     }
-  }, [user?.uid, id]);
+  }, [user?.uid, id, wishlist]);
 
   return (
     <div
